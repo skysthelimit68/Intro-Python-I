@@ -23,13 +23,32 @@ import sys
 import calendar
 from datetime import datetime
 
-mo = input("Enter a valid month: ")
 today = datetime.now()
+mons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
-year = today.year
-mon = today.month
+def isYear(yr):
+  try:
+    if len(yr) == 4 and isinstance(int(yr), int): 
+      return True
+    else:
+      return False
+  except:
+    return False 
 
-if mo is "":
-  print(calendar.month(year, mon))
+def isMonth(mo):
+  try:
+    if len(mo) <= 2 and isinstance(int(mo), int) and int(mo) in mons:
+      return True
+    else: 
+      return False
+  except:
+    return False
+
+
+if len(sys.argv) == 2 and isMonth(sys.argv[1]):
+  print(calendar.TextCalendar(6).prmonth(today.year, int(sys.argv[1])))
+elif len(sys.argv) == 3 and isYear(sys.argv[2]) and isMonth(sys.argv[1]):
+  print(calendar.TextCalendar(6).prmonth(int(sys.argv[2]), int(sys.argv[1])))
 else:
-  print(calendar.month(year, int(mo,0)))
+  print("put month and year into the command line")
+
