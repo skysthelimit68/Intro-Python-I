@@ -23,8 +23,8 @@ import sys
 import calendar
 from datetime import datetime
 
+input_prompt = input("Please enter a month (1 to 12) and a year (4 digits, optional) seperating by a space: ")
 today = datetime.now()
-mons = [1,2,3,4,5,6,7,8,9,10,11,12]
 
 def isYear(yr):
   try:
@@ -37,18 +37,20 @@ def isYear(yr):
 
 def isMonth(mo):
   try:
-    if len(mo) <= 2 and isinstance(int(mo), int) and int(mo) in mons:
+    if len(mo) <= 2 and isinstance(int(mo), int) and int(mo) in range(1, 13):
       return True
     else: 
       return False
   except:
     return False
 
+input_prompt = input_prompt.split(' ')
 
-if len(sys.argv) == 2 and isMonth(sys.argv[1]):
-  print(calendar.TextCalendar(6).prmonth(today.year, int(sys.argv[1])))
-elif len(sys.argv) == 3 and isYear(sys.argv[2]) and isMonth(sys.argv[1]):
-  print(calendar.TextCalendar(6).prmonth(int(sys.argv[2]), int(sys.argv[1])))
+if len(input_prompt) == 1 and isMonth(input_prompt[0]):
+  print(calendar.TextCalendar(6).prmonth(today.year, int(input_prompt[0])))
+elif len(input_prompt) == 2 and isYear(input_prompt[1]) and isMonth(input_prompt[0]):
+  print(calendar.TextCalendar(6).prmonth(int(input_prompt[1]), int(input_prompt[0])))
+elif input_prompt == ['']:
+  print(calendar.TextCalendar(6).prmonth(today.year, today.month))
 else:
-  print("put month and year into the command line")
-
+  print("Invalid input. Exiting the program now")

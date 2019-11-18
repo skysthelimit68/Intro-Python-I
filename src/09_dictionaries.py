@@ -51,11 +51,15 @@ for point in waypoints:
         point["name"] = "not a real place"
         point["lon"] = -130
 
+for point in waypoints:
+    print(point)
 
-print(waypoints)
 # Write a loop that prints out all the field values for all the waypoints
 # YOUR CODE HERE
+print("--------------")
 
 for point in waypoints:
     for key in point:
         print(point[key])
+        # print(f"{key} : {point[key]}")
+    print("--------------")

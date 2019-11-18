@@ -1,3 +1,8 @@
+# The *args will give you all function parameters as a tuple
+# The **kwargs will give you all keyword arguments except for those corresponding to a formal parameter as a dictionary.
+
+
+
 # Experiment with positional arguments, arbitrary arguments, and keyword
 # arguments.
 
@@ -33,6 +38,17 @@ a = [7, 6, 5, 4]
 # What thing do you have to add to make this work?
 print(f2(*a))    # Should print 22
 
+
+########## without using #argv, just regular array
+def f5(arr):
+    x = 0
+    for i in arr:
+        x += i
+    return x
+
+print(f'this is the new test for f5: {f5(a)}')
+##########
+
 # Write a function f3 that accepts either one or two arguments. If one argument,
 # it returns that value plus 1. If two arguments, it returns the sum of the
 # arguments. Google "python default arguments" for a hint.
@@ -57,8 +73,9 @@ print(f3(8))     # Should print 9
 # YOUR CODE HERE
 def f4(**kwargs):
     for key, value in kwargs.items():
-        print ("key: %s, value: %s" %(key, value))
-
+        #print ("key: %s, value: %s" %(key, value))
+        #print (f'key: {key}, value: {value}')
+        print ("key: {0}, value: {1}".format(key, value))
 
 
 # Should print
@@ -70,7 +87,7 @@ f4(a=12, b=30)
 # key: city, value: Berkeley
 # key: population, value: 121240
 # key: founded, value: "March 23, 1868"
-f4(city="Berkeley", population=121240, founded="March 23, 1868")
+f4(city="Berkeley", population=121240, founded='"March 23, 1868"')
 
 d = {
     "monster": "goblin",
