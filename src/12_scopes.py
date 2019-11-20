@@ -5,6 +5,7 @@
 x = 12
 
 def changeX():
+    global x
     x = 99
 
 changeX()
@@ -13,12 +14,18 @@ changeX()
 print(x)
 
 
+
+
+
+
+
 # This nested function has a similar problem.
 
 def outer():
     y = 120
 
     def inner():
+        nonlocal y
         y = 999
 
     inner()
@@ -28,3 +35,21 @@ def outer():
     print(y)
 
 outer()
+
+
+
+
+
+######## 
+
+list_2 = [0]
+
+def the_ugly_truth(li):
+    #li = [0, 1]
+    li.append(1)
+    print(li)
+
+
+print (list_2)
+the_ugly_truth(list_2)
+print (list_2)
